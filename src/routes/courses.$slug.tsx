@@ -80,7 +80,7 @@ function CoursePage() {
           <div>
             <h2 className="text-2xl font-extrabold">Curriculum</h2>
             <ol className="mt-4 rounded-2xl border border-border bg-card divide-y">
-              {course.curriculum.map((c, i) => (
+              {course.curriculum.map((c: string, i: number) => (
                 <li key={i} className="p-4 flex items-start gap-3">
                   <span className="h-7 w-7 rounded-full bg-primary/10 text-primary text-sm font-bold flex items-center justify-center shrink-0">{i + 1}</span>
                   <span className="text-sm">{c}</span>
@@ -110,7 +110,7 @@ function CoursePage() {
           <div>
             <h2 className="text-2xl font-extrabold">Frequently asked</h2>
             <div className="mt-4 space-y-3">
-              {course.faqs.map((f, i) => (
+              {course.faqs.map((f: { q: string; a: string }, i: number) => (
                 <details key={i} className="group rounded-2xl border border-border bg-card p-5">
                   <summary className="font-bold cursor-pointer list-none flex items-center justify-between">
                     {f.q}<span className="text-primary group-open:rotate-45 transition-transform">+</span>

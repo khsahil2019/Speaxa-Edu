@@ -67,7 +67,7 @@ function TeacherProfile() {
           <div>
             <h2 className="text-2xl font-extrabold">Qualifications</h2>
             <ul className="mt-4 grid sm:grid-cols-2 gap-3">
-              {teacher.qualifications.map((q, i) => (
+              {teacher.qualifications.map((q: string, i: number) => (
                 <li key={i} className="rounded-xl border border-border bg-card p-4 text-sm">{q}</li>
               ))}
             </ul>

@@ -47,7 +47,7 @@ function CoursesPage() {
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
-              navigate({ search: (prev) => ({ ...prev, q: e.target.value || undefined }) });
+              navigate({ search: (prev: any) => ({ ...prev, q: e.target.value || undefined }) });
             }}
             placeholder="Search courses, subjects, teachers…"
             className="flex-1 bg-transparent outline-none text-sm"
@@ -58,7 +58,7 @@ function CoursesPage() {
       <section className="mx-auto max-w-7xl px-4 lg:px-6 py-10">
         <div className="flex flex-wrap gap-2">
           <button
-            onClick={() => navigate({ search: (prev) => ({ ...prev, category: undefined }) })}
+            onClick={() => navigate({ search: (prev: any) => ({ ...prev, category: undefined }) })}
             className={`rounded-full px-4 py-1.5 text-sm font-semibold border ${!category ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground/80 border-border hover:bg-muted"}`}
           >
             All
@@ -66,7 +66,7 @@ function CoursesPage() {
           {categories.map((c) => (
             <button
               key={c.key}
-              onClick={() => navigate({ search: (prev) => ({ ...prev, category: c.key }) })}
+              onClick={() => navigate({ search: (prev: any) => ({ ...prev, category: c.key }) })}
               className={`rounded-full px-4 py-1.5 text-sm font-semibold border ${category === c.key ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground/80 border-border hover:bg-muted"}`}
             >
               {c.icon} {c.key}
