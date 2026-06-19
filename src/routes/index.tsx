@@ -1,70 +1,20 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Phone, ShoppingCart, ChevronDown, Search, Star, Play, Award, BookOpen, Users, Video, FileText, ClipboardCheck, ShieldCheck, Eye } from "lucide-react";
-import logo from "@/assets/speaxa-logo.png";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Star, Play, Award, Video, FileText, ClipboardCheck, ShieldCheck, Eye, ArrowRight, CheckCircle2 } from "lucide-react";
+import { CountdownBanner } from "@/components/site/Countdown";
+import { courses, teachers, testimonials, categories } from "@/lib/data";
 import teacher1 from "@/assets/teacher-1.jpg";
-import teacher2 from "@/assets/teacher-2.jpg";
-import student1 from "@/assets/student-1.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SPEAXA - #1 Live EdTech Platform | Online Classes for K-12, JEE, NEET" },
-      { name: "description", content: "Join SPEAXA's live interactive classes with India's top teachers. Live HD classes, monthly progress reports, parent monitoring & SOP-verified teachers." },
-      { property: "og:title", content: "SPEAXA - Learn Live from Top Teachers" },
-      { property: "og:description", content: "Live interactive online classes for school, JEE & NEET with personalized attention." },
+      { title: "SPEAXA — Choose Your Teacher. Learn Your Way." },
+      { name: "description", content: "Live interactive learning with expert teachers, progress tracking and complete parent visibility. Class 9–12, English Speaking, Public Speaking & more." },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
   component: Home,
 });
-
-const navLinks = ["Courses", "Courses for Kids", "Free study material", "Offline Centres", "More"];
-
-const heroPills = [
-  { label: "2-Year JEE", icon: "⏱️", tint: "var(--tint-purple)" },
-  { label: "2-Year NEET", icon: "🎯", tint: "var(--tint-peach)" },
-  { label: "Offline Centres", icon: "🏫", tint: "var(--tint-mint)" },
-  { label: "Olympiad", icon: "🏆", tint: "var(--tint-pink)" },
-  { label: "Early Learning (LKG-Cl 8)", icon: "🎨", tint: "var(--tint-yellow)" },
-  { label: "One to One Classes", icon: "👥", tint: "var(--tint-blue)" },
-];
-
-const exploreCategories = [
-  {
-    eyebrow: "Class 6 - 12",
-    eyebrowColor: "oklch(0.6 0.2 250)",
-    title: "Competitive Exams",
-    tags: ["JEE", "NEET", "Foundation", "Olympiad", "JEE Books", "NEET Books"],
-    image: teacher1,
-    bg: "var(--tint-blue)",
-  },
-  {
-    eyebrow: "Class 3 - 12",
-    eyebrowColor: "oklch(0.55 0.2 300)",
-    title: "School Tuition",
-    tags: ["CBSE Board", "ICSE Board", "All Boards", "State Boards"],
-    image: teacher2,
-    bg: "var(--tint-purple)",
-  },
-  {
-    eyebrow: "Class LKG - 8",
-    eyebrowColor: "oklch(0.6 0.2 250)",
-    title: "Courses for Kids",
-    tags: ["Spoken English", "Learn Math", "Learn Coding", "Phonics English"],
-    image: student1,
-    bg: "var(--tint-yellow)",
-  },
-];
-
-const featuredCourses = [
-  { cls: "Class 6", subj: "General", weeks: 24, title: "Extra Ordinary Course", desc: "A standard program designed to provide learners with strong fundamentals across subjects.", price: 1999, tint: "var(--tint-mint)" },
-  { cls: "Class 10", subj: "Physics", weeks: 24, title: "Class 10 Physics Mastery", desc: "Complete CBSE Class 10 Physics covering all chapters with live demonstrations.", price: 1999, tint: "var(--tint-blue)" },
-  { cls: "Class 10", subj: "Mathematics", weeks: 24, title: "Class 10 Maths Excellence", desc: "Algebra, geometry, trigonometry and statistics with weekly mock tests.", price: 1999, tint: "var(--tint-pink)" },
-  { cls: "Class 11", subj: "Chemistry", weeks: 32, title: "Class 11 Chemistry Foundation", desc: "Physical, Organic and Inorganic chemistry foundations for boards and JEE.", price: 2499, tint: "var(--tint-purple)" },
-  { cls: "Class 12", subj: "Biology", weeks: 24, title: "Class 12 Biology Board Prep", desc: "Targeted Class 12 Biology preparation with board-pattern practice.", price: 2999, tint: "var(--tint-peach)" },
-  { cls: "LKG - 5", subj: "Spoken English", weeks: 20, title: "Phonics & Spoken English", desc: "Master English speaking fluency with playful live sessions for kids.", price: 1499, tint: "var(--tint-yellow)" },
-];
 
 const features = [
   { icon: Video, title: "Live Interactive Classes", desc: "HD video classes with polls, quizzes, whiteboard, and real-time Q&A." },
@@ -75,172 +25,121 @@ const features = [
   { icon: ShieldCheck, title: "SOP-Verified Teachers", desc: "Every teacher passes a rigorous 5-stage verification before being allowed to teach." },
 ];
 
-const testimonials = [
-  { quote: "SPEAXA's live classes with Dr. Priya completely transformed my understanding of Physics. I scored 96/100 in my boards!", name: "Rahul Verma", role: "Class 10 Student, CBSE", img: student1 },
-  { quote: "The monthly reports are amazing! As a parent, I always know exactly how my child is performing in every subject.", name: "Suresh Kumar", role: "Parent, Bangalore", img: teacher2 },
-  { quote: "Teaching on SPEAXA is so professional. The SOP system ensures quality, and earnings are transparent and fair.", name: "Dr. Priya Sharma", role: "Gold Teacher, Physics", img: teacher1 },
-];
-
 function Home() {
+  const topCourses = courses.slice(0, 6);
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* NAV */}
-      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6 h-16 flex items-center gap-6">
-          <a href="/" className="flex items-center shrink-0">
-            <img src={logo} alt="SPEAXA" className="h-9 w-auto" />
-          </a>
-          <button className="hidden md:inline-flex items-center gap-1 rounded-full border-2 border-primary text-primary px-4 py-1.5 text-sm font-semibold">
-            Courses <ChevronDown className="h-4 w-4" />
-          </button>
-          <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-foreground/80">
-            {navLinks.map((l) => (
-              <a key={l} href="#" className="flex items-center gap-1 hover:text-primary">
-                {l} <ChevronDown className="h-3.5 w-3.5" />
-              </a>
-            ))}
-            <a href="#" className="flex items-center gap-1.5 hover:text-primary">
-              <ShoppingCart className="h-4 w-4" /> Store
-            </a>
-          </nav>
-          <div className="ml-auto flex items-center gap-3">
-            <div className="hidden md:flex items-center gap-2 text-right">
-              <div className="h-9 w-9 rounded-full bg-muted flex items-center justify-center">
-                <Phone className="h-4 w-4 text-foreground/70" />
-              </div>
-              <div className="leading-tight">
-                <div className="text-[11px] text-muted-foreground">Talk to our experts</div>
-                <div className="text-sm font-semibold">+91 9999 999 999</div>
-              </div>
-            </div>
-            <button className="rounded-md border border-border px-4 py-2 text-sm font-semibold hover:bg-muted">Sign In</button>
-          </div>
-        </div>
-      </header>
-
+    <>
       {/* HERO */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[oklch(0.97_0.04_55)] to-background">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6 pt-10 pb-6">
-          <div className="rounded-3xl bg-card border border-border shadow-sm overflow-hidden">
-            <div className="grid md:grid-cols-2 gap-6 p-8 md:p-12 items-center">
-              <div>
-                <span className="inline-block rounded-full bg-accent text-accent-foreground px-3 py-1 text-xs font-semibold">#1 Live EdTech Platform in India</span>
-                <h1 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight">
-                  Learn From <span className="text-primary">Expert Teachers</span> In Real-Time
-                </h1>
-                <p className="mt-4 text-muted-foreground text-lg max-w-lg">
-                  Join live interactive classes, get personalized attention, and track your child's growth with SPEAXA's AI-powered learning system.
-                </p>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <a href="#courses" className="rounded-md bg-primary text-primary-foreground px-6 py-3 text-sm font-semibold hover:opacity-90 shadow-sm">Start Learning Free</a>
-                  <a href="#how" className="rounded-md border border-border bg-card px-6 py-3 text-sm font-semibold hover:bg-muted">How It Works</a>
-                </div>
-                <div className="mt-8 grid grid-cols-4 gap-4 max-w-md">
-                  {[["10K+","Students"],["200+","Teachers"],["150+","Courses"],["12.8K+","Classes"]].map(([n,l]) => (
-                    <div key={l}>
-                      <div className="text-xl font-extrabold text-primary">{n}</div>
-                      <div className="text-[11px] text-muted-foreground">{l}</div>
-                    </div>
-                  ))}
-                </div>
+        <div className="mx-auto max-w-7xl px-4 lg:px-6 pt-12 pb-6">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-accent text-accent-foreground px-3 py-1 text-xs font-bold">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" /> Premium Interactive Learning for Every Student
+              </span>
+              <h1 className="mt-4 text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
+                Choose Your Teacher. <br />
+                <span className="text-primary">Learn Your Way.</span>
+              </h1>
+              <p className="mt-5 text-lg text-muted-foreground max-w-xl">
+                Interactive live learning with expert teachers, progress tracking, and complete parent visibility.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link to="/courses" className="rounded-md bg-primary text-primary-foreground px-6 py-3 text-sm font-bold hover:opacity-90 shadow-sm inline-flex items-center gap-1.5">
+                  Start Learning <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link to="/teachers" className="rounded-md border border-border bg-card px-6 py-3 text-sm font-bold hover:bg-muted">Explore Teachers</Link>
+                <Link to="/book-demo" className="rounded-md bg-foreground text-background px-6 py-3 text-sm font-bold hover:opacity-90">Book Free Demo</Link>
               </div>
-              <div className="relative">
-                <div className="rounded-2xl bg-[var(--tint-blue)] p-6 relative">
-                  <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-destructive text-white px-2.5 py-1 text-[11px] font-bold">
-                      <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse"/> LIVE
-                    </span>
-                    <span className="text-xs text-foreground/70">28 students online</span>
+              <div className="mt-8 grid grid-cols-4 gap-4 max-w-md">
+                {[["10K+", "Students"], ["200+", "Teachers"], ["150+", "Live Courses"], ["98%", "Parent NPS"]].map(([n, l]) => (
+                  <div key={l}>
+                    <div className="text-2xl font-extrabold text-primary">{n}</div>
+                    <div className="text-[11px] text-muted-foreground">{l}</div>
                   </div>
-                  <div className="mt-4 flex items-center gap-3">
-                    <img src={teacher1} alt="Dr. Priya Sharma" className="h-14 w-14 rounded-full object-cover ring-2 ring-white" width={56} height={56} />
-                    <div>
-                      <div className="font-bold">Dr. Priya Sharma</div>
-                      <div className="text-xs text-foreground/70">Physics • Class 10</div>
-                    </div>
-                  </div>
-                  <div className="mt-4 aspect-video rounded-xl bg-foreground/90 flex items-center justify-center">
-                    <Play className="h-12 w-12 text-white/90" fill="currentColor" />
-                  </div>
-                </div>
-                <div className="absolute -bottom-4 -left-4 hidden md:block rounded-xl bg-card border border-border shadow-md p-3 w-56">
-                  <div className="text-xs text-muted-foreground">Rahul's Progress</div>
-                  <div className="mt-1 font-bold text-sm">82% this month</div>
-                  <div className="mt-2 h-1.5 rounded-full bg-muted overflow-hidden">
-                    <div className="h-full bg-primary" style={{ width: "82%" }} />
-                  </div>
-                  <div className="mt-1 text-[11px] text-primary font-semibold">Excellent!</div>
-                </div>
-                <div className="absolute -top-3 -right-3 hidden md:flex items-center gap-1.5 rounded-full bg-card border border-border shadow-md px-3 py-1.5">
-                  <Award className="h-4 w-4 text-primary" />
-                  <span className="text-xs font-bold">Gold Teacher</span>
-                </div>
+                ))}
               </div>
             </div>
-          </div>
 
-          {/* Quick pills */}
-          <div className="mt-6 rounded-2xl bg-card border border-border p-4">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-              {heroPills.map((p) => (
-                <a key={p.label} href="#" className="rounded-xl p-4 hover:shadow-md transition-shadow" style={{ background: p.tint }}>
-                  <div className="text-2xl">{p.icon}</div>
-                  <div className="mt-3 text-sm font-bold text-foreground flex items-center justify-between">
-                    {p.label} <span className="text-foreground/50">›</span>
+            <div className="relative">
+              <div className="rounded-3xl bg-[var(--tint-blue)] p-6 relative shadow-sm">
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-destructive text-white px-2.5 py-1 text-[11px] font-bold">
+                    <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" /> LIVE NOW
+                  </span>
+                  <span className="text-xs text-foreground/70">28 students online</span>
+                </div>
+                <div className="mt-4 flex items-center gap-3">
+                  <img src={teacher1} alt="Dr. Priya Sharma" className="h-14 w-14 rounded-full object-cover ring-2 ring-white" width={56} height={56} />
+                  <div>
+                    <div className="font-bold">Dr. Priya Sharma</div>
+                    <div className="text-xs text-foreground/70">Physics · Class 10</div>
                   </div>
-                </a>
-              ))}
+                </div>
+                <div className="mt-4 aspect-video rounded-2xl bg-foreground/90 flex items-center justify-center">
+                  <Play className="h-14 w-14 text-white/90" fill="currentColor" />
+                </div>
+              </div>
+              <div className="absolute -bottom-4 -left-4 hidden md:block rounded-xl bg-card border border-border shadow-lg p-3 w-60">
+                <div className="text-xs text-muted-foreground">Rahul's Progress</div>
+                <div className="mt-1 font-bold text-sm">82% this month</div>
+                <div className="mt-2 h-1.5 rounded-full bg-muted overflow-hidden">
+                  <div className="h-full bg-primary" style={{ width: "82%" }} />
+                </div>
+                <div className="mt-1 text-[11px] text-primary font-semibold">Excellent!</div>
+              </div>
+              <div className="absolute -top-3 -right-3 hidden md:flex items-center gap-1.5 rounded-full bg-card border border-border shadow-lg px-3 py-1.5">
+                <Award className="h-4 w-4 text-primary" />
+                <span className="text-xs font-bold">SOP-Verified</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* EXPLORE COURSES */}
-      <section id="courses" className="mx-auto max-w-7xl px-4 lg:px-6 py-16">
-        <h2 className="text-3xl md:text-4xl font-extrabold">
-          Explore courses <span className="text-muted-foreground text-2xl font-bold">(LKG - 12)</span>
-        </h2>
-        <div className="mt-8 grid md:grid-cols-3 gap-6">
-          {exploreCategories.map((c) => (
-            <div key={c.title} className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
-              <div className="relative h-64" style={{ background: c.bg }}>
-                <div className="absolute inset-0 p-6">
-                  <div className="text-sm font-bold" style={{ color: c.eyebrowColor }}>{c.eyebrow}</div>
-                  <div className="mt-1 text-2xl font-extrabold">{c.title}</div>
-                  <div className="mt-3 flex flex-wrap gap-2 max-w-[60%]">
-                    {c.tags.map((t) => (
-                      <span key={t} className="rounded-full border border-primary/30 bg-card px-3 py-1 text-xs font-semibold text-primary">{t}</span>
-                    ))}
-                  </div>
-                </div>
-                <img src={c.image} alt="" className="absolute right-0 bottom-0 h-full w-auto object-contain object-bottom" loading="lazy" />
+      <CountdownBanner />
+
+      {/* CATEGORIES */}
+      <section className="mx-auto max-w-7xl px-4 lg:px-6 py-14">
+        <h2 className="text-3xl md:text-4xl font-extrabold">Explore by category</h2>
+        <p className="mt-2 text-muted-foreground">Pick what you want to learn — every category opens a full catalogue.</p>
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+          {categories.map((c) => (
+            <Link
+              key={c.key}
+              to="/courses"
+              search={{ category: c.key }}
+              className="rounded-2xl p-5 hover:shadow-lg transition-shadow border border-border bg-card group"
+              style={{ background: c.color }}
+            >
+              <div className="text-3xl">{c.icon}</div>
+              <div className="mt-3 font-bold text-foreground flex items-center justify-between">
+                {c.key}
+                <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-              <div className="p-5">
-                <button className="w-full rounded-md bg-primary text-primary-foreground py-2.5 font-semibold hover:opacity-90">Explore Courses</button>
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
 
       {/* HOW IT WORKS */}
-      <section id="how" className="bg-muted/40 py-16">
+      <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <div className="text-center">
-            <div className="text-sm font-bold text-primary uppercase tracking-wider">Simple Process</div>
-            <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Start Learning in 3 Easy Steps</h2>
+            <div className="text-sm font-bold text-primary uppercase tracking-wider">Simple process</div>
+            <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Start learning in 3 easy steps</h2>
           </div>
           <div className="mt-12 grid md:grid-cols-3 gap-6">
             {[
-              { n: "01", t: "Register Free", d: "Create your student account in under 2 minutes. No credit card required." },
-              { n: "02", t: "Choose a Batch", d: "Browse courses, compare teachers, and enroll in a batch that fits your schedule." },
-              { n: "03", t: "Learn Live", d: "Join live classes, submit assignments, and track your growth with monthly reports." },
+              { n: "01", t: "Register Free", d: "Create your student account in under 2 minutes. No credit card needed.", to: "/auth" },
+              { n: "02", t: "Choose Your Teacher", d: "Browse expert teachers, compare ratings, and pick the one that fits you.", to: "/teachers" },
+              { n: "03", t: "Learn Live", d: "Join interactive batches, track progress and grow with monthly reports.", to: "/courses" },
             ].map((s) => (
-              <div key={s.n} className="rounded-2xl bg-card border border-border p-7 relative">
+              <Link key={s.n} to={s.to} className="rounded-2xl bg-card border border-border p-7 hover:shadow-md transition-shadow block">
                 <div className="text-6xl font-black text-primary/15 leading-none">{s.n}</div>
                 <h3 className="mt-3 text-xl font-bold">{s.t}</h3>
                 <p className="mt-2 text-muted-foreground text-sm">{s.d}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -248,30 +147,34 @@ function Home() {
 
       {/* FEATURED COURSES */}
       <section className="mx-auto max-w-7xl px-4 lg:px-6 py-16">
-        <div className="flex items-end justify-between">
+        <div className="flex items-end justify-between gap-4">
           <div>
-            <div className="text-sm font-bold text-primary uppercase tracking-wider">Explore</div>
-            <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Featured Courses</h2>
+            <div className="text-sm font-bold text-primary uppercase tracking-wider">Featured</div>
+            <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Most-loved live courses</h2>
           </div>
-          <a href="#" className="text-sm font-semibold text-primary hover:underline">View All →</a>
+          <Link to="/courses" className="text-sm font-semibold text-primary hover:underline shrink-0">View all →</Link>
         </div>
         <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredCourses.map((c) => (
-            <div key={c.title} className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all">
-              <div className="h-32 flex items-center justify-center text-5xl" style={{ background: c.tint }}>📖</div>
+          {topCourses.map((c) => (
+            <Link key={c.slug} to="/courses/$slug" params={{ slug: c.slug }} className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all">
+              <div className="h-32 flex items-center justify-center text-5xl" style={{ background: c.tint }}>{c.emoji}</div>
               <div className="p-5">
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="rounded-full bg-accent text-accent-foreground px-2.5 py-1 font-bold">{c.cls}</span>
-                  <span className="text-muted-foreground font-medium">{c.subj} • {c.weeks} weeks</span>
+                  <span className="rounded-full bg-accent text-accent-foreground px-2.5 py-1 font-bold">{c.category}</span>
+                  <span className="text-muted-foreground font-medium">{c.duration}</span>
                 </div>
                 <h3 className="mt-3 text-lg font-bold">{c.title}</h3>
-                <p className="mt-1.5 text-sm text-muted-foreground line-clamp-2">{c.desc}</p>
+                <p className="mt-1.5 text-sm text-muted-foreground line-clamp-2">{c.description}</p>
                 <div className="mt-4 flex items-center justify-between">
-                  <div className="text-xl font-extrabold">₹{c.price.toLocaleString()}</div>
-                  <button className="rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90">Explore</button>
+                  <div className="flex items-center gap-1 text-sm">
+                    <Star className="h-4 w-4 text-primary fill-current" />
+                    <span className="font-bold">{c.rating}</span>
+                    <span className="text-muted-foreground">· {c.teacherCount} teachers</span>
+                  </div>
+                  <div className="text-base font-extrabold">₹{c.price.toLocaleString()}</div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -279,40 +182,34 @@ function Home() {
       {/* TEACHERS */}
       <section className="bg-[oklch(0.98_0.02_55)] py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <div className="text-center">
-            <div className="text-sm font-bold text-primary uppercase tracking-wider">Our Faculty</div>
-            <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Learn from Top Teachers</h2>
-            <p className="mt-3 text-muted-foreground">All teachers are SOP-verified and background-checked for quality.</p>
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <div className="text-sm font-bold text-primary uppercase tracking-wider">Faculty</div>
+              <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Learn from teachers you choose</h2>
+            </div>
+            <Link to="/teachers" className="text-sm font-semibold text-primary hover:underline shrink-0">Meet all teachers →</Link>
           </div>
           <div className="mt-10 grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { name: "Dr. Priya Sharma", subj: "Physics, Mathematics", img: teacher1, exp: "8+ yrs" },
-              { name: "Arjun Mehta", subj: "Chemistry, Biology", img: teacher2, exp: "10+ yrs" },
-              { name: "Dr. Priya Sharma", subj: "Physics", img: teacher1, exp: "8+ yrs" },
-              { name: "Arjun Mehta", subj: "Mathematics", img: teacher2, exp: "10+ yrs" },
-            ].map((t, i) => (
-              <div key={i} className="rounded-2xl bg-card border border-border overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+            {teachers.map((t) => (
+              <Link key={t.slug} to="/teachers/$slug" params={{ slug: t.slug }} className="rounded-2xl bg-card border border-border overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
                 <div className="relative">
-                  <img src={t.img} alt={t.name} className="w-full h-56 object-cover" loading="lazy" />
+                  <img src={t.image} alt={t.name} className="w-full h-56 object-cover" loading="lazy" />
                   <span className="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-primary text-primary-foreground px-2.5 py-1 text-[11px] font-bold">
                     <Award className="h-3 w-3" /> Gold
                   </span>
                 </div>
                 <div className="p-4">
                   <h3 className="font-bold">{t.name}</h3>
-                  <p className="text-xs text-muted-foreground">{t.subj}</p>
+                  <p className="text-xs text-muted-foreground line-clamp-1">{t.subjects.join(", ")}</p>
                   <div className="mt-2 flex items-center justify-between text-xs">
                     <span className="flex items-center gap-1 text-primary font-bold">
-                      <Star className="h-3.5 w-3.5 fill-current" /> 5.0
+                      <Star className="h-3.5 w-3.5 fill-current" /> {t.rating}
                     </span>
-                    <span className="text-muted-foreground">{t.exp} experience</span>
+                    <span className="text-muted-foreground">{t.experience}+ yrs</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
-          </div>
-          <div className="mt-10 text-center">
-            <a href="#" className="inline-block rounded-md border-2 border-primary text-primary px-6 py-2.5 font-semibold hover:bg-primary hover:text-primary-foreground transition-colors">Meet All Teachers</a>
           </div>
         </div>
       </section>
@@ -321,7 +218,7 @@ function Home() {
       <section className="mx-auto max-w-7xl px-4 lg:px-6 py-16">
         <div className="text-center">
           <div className="text-sm font-bold text-primary uppercase tracking-wider">Why SPEAXA</div>
-          <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Everything You Need to Excel</h2>
+          <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Everything you need to excel</h2>
         </div>
         <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((f) => (
@@ -341,24 +238,30 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <div className="text-center">
             <div className="text-sm font-bold text-primary uppercase tracking-wider">Success Stories</div>
-            <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">What Our Students Say</h2>
+            <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">What our students say</h2>
           </div>
-          <div className="mt-10 grid md:grid-cols-3 gap-6">
+          <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {testimonials.map((t, i) => (
-              <div key={i} className="rounded-2xl bg-card border border-border p-7 shadow-sm">
+              <div key={i} className="rounded-2xl bg-card border border-border p-6 shadow-sm">
                 <div className="flex gap-0.5 text-primary">
-                  {Array.from({length: 5}).map((_,k) => <Star key={k} className="h-4 w-4 fill-current" />)}
+                  {Array.from({ length: 5 }).map((_, k) => <Star key={k} className="h-4 w-4 fill-current" />)}
                 </div>
-                <p className="mt-4 text-foreground/80 italic">"{t.quote}"</p>
+                <p className="mt-3 text-sm text-foreground/80">"{t.quote}"</p>
                 <div className="mt-5 flex items-center gap-3">
-                  <img src={t.img} alt={t.name} className="h-12 w-12 rounded-full object-cover" loading="lazy" />
+                  <img src={t.img} alt={t.name} className="h-11 w-11 rounded-full object-cover" loading="lazy" />
                   <div>
                     <div className="font-bold text-sm">{t.name}</div>
                     <div className="text-xs text-muted-foreground">{t.role}</div>
                   </div>
                 </div>
+                <div className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary">
+                  <CheckCircle2 className="h-3.5 w-3.5" /> {t.achievement}
+                </div>
               </div>
             ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link to="/success-stories" className="text-sm font-semibold text-primary hover:underline">Read more stories →</Link>
           </div>
         </div>
       </section>
@@ -366,47 +269,14 @@ function Home() {
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-4 lg:px-6 py-16">
         <div className="rounded-3xl bg-gradient-to-r from-primary to-[oklch(0.65_0.22_30)] text-primary-foreground p-10 md:p-14 text-center shadow-lg">
-          <h2 className="text-3xl md:text-4xl font-extrabold">Ready to Start Your Learning Journey?</h2>
-          <p className="mt-3 opacity-90 max-w-xl mx-auto">Join 10,000+ students already excelling with SPEAXA's live classes.</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold">Ready to start your learning journey?</h2>
+          <p className="mt-3 opacity-90 max-w-xl mx-auto">Join thousands of students already excelling with SPEAXA's live classes.</p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <a href="#" className="rounded-md bg-white text-primary px-6 py-3 font-semibold hover:opacity-90">Join as Student</a>
-            <a href="#" className="rounded-md border-2 border-white/80 text-white px-6 py-3 font-semibold hover:bg-white/10">Teach with Us</a>
+            <Link to="/auth" search={{ mode: "register" }} className="rounded-md bg-white text-primary px-6 py-3 font-bold hover:opacity-90">Join as Student</Link>
+            <Link to="/book-demo" className="rounded-md border-2 border-white/80 text-white px-6 py-3 font-bold hover:bg-white/10">Book Free Demo</Link>
           </div>
         </div>
       </section>
-
-      {/* FOOTER */}
-      <footer className="bg-foreground text-background/90">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6 py-14 grid md:grid-cols-4 gap-10">
-          <div>
-            <img src={logo} alt="SPEAXA" className="h-8 w-auto brightness-0 invert" />
-            <p className="mt-3 text-sm text-background/60">India's #1 live edtech platform — learn from expert teachers in real time.</p>
-          </div>
-          <div>
-            <h4 className="font-bold mb-3">Courses</h4>
-            <ul className="space-y-2 text-sm text-background/70">
-              <li>JEE</li><li>NEET</li><li>CBSE / ICSE</li><li>Olympiad</li><li>Kids Programs</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold mb-3">Company</h4>
-            <ul className="space-y-2 text-sm text-background/70">
-              <li>About Us</li><li>Teachers</li><li>Careers</li><li>Blog</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold mb-3">Get In Touch</h4>
-            <ul className="space-y-2 text-sm text-background/70">
-              <li>support@speaxa.com</li>
-              <li>+91 9999 999 999</li>
-              <li>Mon–Sat: 8 AM – 8 PM IST</li>
-            </ul>
-          </div>
-        </div>
-        <div className="border-t border-background/10 py-5 text-center text-xs text-background/50">
-          © {new Date().getFullYear()} SPEAXA. All rights reserved.
-        </div>
-      </footer>
-    </div>
+    </>
   );
 }
